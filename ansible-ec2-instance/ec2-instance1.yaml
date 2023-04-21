@@ -1,0 +1,22 @@
+---
+- name: start an instance with a public IP address
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Create EC2
+      amazon.aws.ec2_instance:
+        name: "anisible-epam"
+        # key_name: "po's-key"
+        vpc_subnet_id: subnet-0d8aa66b
+        instance_type: t2.micro
+        security_group: default
+        region: us-east-1
+        instance_ids: i-0d22ca559a7aabf92
+        network:
+          assign_public_ip: false
+
+        image_id: ami-06e46074ae430fba6
+        state: stopped
+        tags:
+          Environment: Testing

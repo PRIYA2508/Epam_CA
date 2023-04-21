@@ -1,0 +1,16 @@
+directory=$1
+
+if [ ! -d "$directory" ]; then
+  echo "Error: $directory is not a valid directory."
+  exit 1
+fi
+
+files=$(find "$directory" -type f)
+
+for file in $files; do
+  chmod go-rwx "$file"
+done
+
+echo "Permissions removed for all files in 
+$directory."
+
